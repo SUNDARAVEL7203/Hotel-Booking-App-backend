@@ -9,7 +9,6 @@ POST  http://localhost:5000/api/rooms
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmIzNGVlOGI1M2I1YWZhNDM1ZTczZCIsImlhdCI6MTczMDk1NTc2Mn0.NXLN-yo8O0Ta7OJ6kn595ZESv_3OBVftleVyTeho9Ug
 
-
 {
     "name" :"test room",
     "price" : 500,

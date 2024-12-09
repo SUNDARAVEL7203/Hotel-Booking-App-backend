@@ -15,8 +15,3 @@ app.post("/upload", upload.single("my_file"), async (req, res) => {
     });
   }
 });
-
-const port = 5000;
-app.listen(port, () => {
-  console.log(`Server Listening on ${port}`);
-});
