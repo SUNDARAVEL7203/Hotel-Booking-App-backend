@@ -22,7 +22,9 @@ app.use(errorHandler);
 app.use("/auth", auth);
 app.use(cors());
 
-
+app.get("/" , (req,res) => {
+  res.json("Welcome")
+})
 
 
 app.use("/api/rooms", roomRoutes);
