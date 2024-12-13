@@ -10,9 +10,7 @@ const { errorHandler } = require("./middleware/errorHandler");
 const { auth } = require("./middleware/authMiddleware");
 const paymentroutes = require("./RazorPayment/paymentroutes");
 const cors = require("cors");
-const cloudinary = require("cloudinary").v2;
-const Multer = require("multer");
-const { v2 } = require("cloudinary");
+const upload = require('./Cloudinarybend/cloudinaryConfig')
 
 //connect to Database
 connectDB();
@@ -21,6 +19,8 @@ app.use(express.json());
 app.use(errorHandler);
 app.use("/auth", auth);
 app.use(cors());
+
+
 
 app.get("/" , (req,res) => {
   res.json("Welcome")
@@ -32,12 +32,22 @@ app.use("/api/bookings", bookingRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/payment", paymentroutes);
 
-v2.config({
-  api_key: "495737122385612",
-  cloud_name: "dgsnmd3jg",
-  api_secret: "56OiMLlLjs-pj3O8sZxhwheVMnw",
+app.post("/upload", upload.single("my_file"), async (req, res) => {
+  try {
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    const cldRes = await handleUpload(dataURI);
+    res.json(cldRes);
+  } catch (error) {
+    console.log(error);
+    res.send({
+      message: error.message,
+    });
+  }
 });
+
+
 
 app.listen(port, () => console.log(`listening on on ${port}`));
 
-module.exports = v2;
+

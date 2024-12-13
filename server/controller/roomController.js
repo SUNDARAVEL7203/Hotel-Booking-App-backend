@@ -1,5 +1,6 @@
 const Room = require("../model/roomModel")
 
+
 const getRooms = async (req, res) => {
     try {
         const rooms = await Room.find();
@@ -14,6 +15,7 @@ const getRooms = async (req, res) => {
       }
 }
 
+// create room
 // create room
 const createRoom = async (req, res, next) => {
   try {
@@ -32,6 +34,7 @@ const createRoom = async (req, res, next) => {
     next(error);
   }
 };
+
   
   // get single room
 const getRoom = async (req, res, next) => {

@@ -40,42 +40,44 @@ const createUser = async(req, res, next) => {
     }
 }
 
+
+
 const loginUser = async (req, res, next) => {
-    try {
-      // todo use joi to validate data;
-  
-      const { email, password } = req.body;
-  
-      // get user from database
-      const user = await User.findOne({ email });
-  
-      if (!user) {
-        res.status(400);
-        throw new Error("user not found");
-      }
-  
-      // compare the password
-  
-      const isCorrect = await bcrypt.compare(password, user.password);
-  
-      if (!isCorrect) {
-        res.status(401).json({message : "in valid password"})
-         
-      }
-  
-      // generate token set
-      // set cookie
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    
-  
-      const { password: userPassword, ...rest } = user._doc;
-       res.status(200).json({
-        token
-      });
-    } catch (error) {
-      next(error);
+  try {
+    // todo use joi to validate data;
+
+    const { email, password } = req.body;
+
+    // get user from database
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      res.status(400);
+      throw new Error("user not found");
     }
-  };
+
+    // compare the password
+
+    const isCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isCorrect) {
+      res.status(401).json({message : "in valid password"})
+       
+    }
+
+    // generate token set
+    
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+  
+
+    const { password: userPassword, ...rest } = user._doc;
+     res.status(200).json({
+      token
+    });
+  } catch (error) {
+    next(error);
+  }
+}; 
 
   const logoutUser = async (req, res) => {
     try {
