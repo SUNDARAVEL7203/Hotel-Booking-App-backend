@@ -3,12 +3,11 @@ const {getRooms, createRoom, getRoom, updateRoom, deleteRoom} = require("../cont
 const { auth } = require("../middleware/authMiddleware");
 
 
-
 const router = Router();
 
 router.get("/", auth, getRooms)
 
-router.post("/", auth,  createRoom , )
+router.post("/", auth,  createRoom  )
 
 router.get("/:id", getRoom)
 

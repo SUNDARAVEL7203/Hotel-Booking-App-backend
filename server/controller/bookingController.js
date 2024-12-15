@@ -57,7 +57,7 @@ const createBooking = async (req, res, next) => {
       const room = await Booking.findByIdAndDelete(req.params.id);
       if (!room) {
         res.status(400);
-        throw new Error("cannot delete room");
+        throw new Error("cannot delete bookings");
       }
       return res.status(200).json({ id: req.params.id });
     } catch (error) {

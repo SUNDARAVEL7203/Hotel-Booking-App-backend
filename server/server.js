@@ -10,7 +10,7 @@ const { errorHandler } = require("./middleware/errorHandler");
 const { auth } = require("./middleware/authMiddleware");
 const paymentroutes = require("./RazorPayment/paymentroutes");
 const cors = require("cors");
-const upload = require('./Cloudinarybend/cloudinaryConfig')
+const {upload} = require('./Cloudinarybend/cloudinaryConfig')
 
 //connect to Database
 connectDB();

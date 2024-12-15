@@ -34,7 +34,6 @@ const createRoom = async (req, res, next) => {
     next(error);
   }
 };
-
   
   // get single room
 const getRoom = async (req, res, next) => {

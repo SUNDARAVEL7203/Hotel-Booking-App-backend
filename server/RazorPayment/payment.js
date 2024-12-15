@@ -13,8 +13,8 @@ const order = (req, res) => {
 
     try {
         const razorpayInstance = new Razorpay({
-            key_id: "rzp_test_kc9OUenuliQsc3",
-            key_secret: "9cQYT1BqJFRksHLMdO9mm7bC"
+            key_id: "rzp_test_Ioy9td4iHG3nYR",
+            key_secret: "USyRmvYW8i2VCTszQw0MLqpl"
         });
         
         const options = {

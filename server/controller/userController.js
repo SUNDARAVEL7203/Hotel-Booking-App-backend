@@ -19,7 +19,7 @@ const getUsers = async(req, res, next) => {
 const createUser = async(req, res, next) => {
     try {
         const {password, ...rest}= req.body
-
+        console.log(req.body)
         //generate salt
         const salt = await bcrypt.genSalt(10);
         hashedPassword = await bcrypt.hash(password, salt)
@@ -33,7 +33,7 @@ const createUser = async(req, res, next) => {
         }
         //hash password before saving to database
         const { password: userPassword,  ...otherDetails } = user._doc
-
+        console.log(user)
         return res.status(201).json(otherDetails)
     } catch (error) {
         next(error)
@@ -69,10 +69,10 @@ const loginUser = async (req, res, next) => {
     
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   
-
+    
     const { password: userPassword, ...rest } = user._doc;
      res.status(200).json({
-      token
+      token, email:user.email, admin:user.isAdmin
     });
   } catch (error) {
     next(error);

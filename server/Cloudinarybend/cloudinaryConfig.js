@@ -24,4 +24,4 @@ const upload = Multer({
 });
 
 
-module.exports = upload
+module.exports = {upload , handleUpload}
